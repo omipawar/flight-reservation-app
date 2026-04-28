@@ -10,12 +10,12 @@ git clone https://github.com/shubhamkalsait/Flight-reservation.git
 ```shell
 apt update -y
 apt install mysql-server -y
-mysql_secure_installation
+#mysql_secure_installation
 mysql -uroot -p
->> create user linux identified by "Redhat";
+>> create user linux identified by "Redhat@123";
 >> grant all privileges on *.* to linux;
 >> flush privileges;
->> create flightdb;
+>> create database flightdb;
 >> exit
 ```
 
