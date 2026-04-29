@@ -29,20 +29,21 @@ pipeline {
             steps {
                 sh '''
                     cd FlightReservationApplication
-                    docker build -t mayurwagh/flight-reservation-pls-19-20:latest . 
-                    docker push mayurwagh/flight-reservation-pls-19-20:latest
-                    docker rmi mayurwagh/flight-reservation-pls-19-20:latest
+                    docker build -t omipawar/flight-reservation-backend:latest . 
+                    docker push omipawar/flight-reservation-backend:latest
+                    docker rmi omipawar/flight-reservation-backend:latest
                 '''
             }
         }
-        //stage('Deploy') {
-        //    steps {
+        stage('Deploy') {
+            steps {
+                  echo 'This is deployment stage'
         //        sh '''
         //            cd FlightReservationApplication
         //            kubectl apply -f k8s/deployment.yaml
         //            kubectl apply -f k8s/service.yaml
         //        '''
-        //   }
-        //}
+           }
+        }
     }
 }
