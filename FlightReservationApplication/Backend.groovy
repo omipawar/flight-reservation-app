@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'maven-3'
+    }
+
     stages {
         stage('Code-pull') {
             steps {
@@ -25,13 +30,18 @@ pipeline {
                 }
             }
         }
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('Docker'){
             steps {
                 sh '''
                     cd FlightReservationApplication
-                    docker build -t omipawar/flight-reservation-backend:latest . 
-                    docker push omipawar/flight-reservation-backend:latest
-                    docker rmi omipawar/flight-reservation-backend:latest
+                    docker build -t omipawar097/flight-reservation-backend:latest . 
+                    docker push omipawar097/flight-reservation-backend:latest
+                    docker rmi omipawar097/flight-reservation-backend:latest
                 '''
             }
         }
