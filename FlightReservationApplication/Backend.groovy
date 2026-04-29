@@ -35,14 +35,14 @@ pipeline {
                 '''
             }
         }
-        #stage('Deploy') {
-        #    steps {
-        #        sh '''
-        #            cd FlightReservationApplication
-        #            kubectl apply -f k8s/deployment.yaml
-        #            kubectl apply -f k8s/service.yaml
-        #        '''
-        #    }
-        }
+        //stage('Deploy') {
+        //    steps {
+        //        sh '''
+        //            cd FlightReservationApplication
+        //            kubectl apply -f k8s/deployment.yaml
+        //            kubectl apply -f k8s/service.yaml
+        //        '''
+        //   }
+        //}
     }
 }
