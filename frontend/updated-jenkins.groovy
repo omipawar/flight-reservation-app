@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    tools {
+        nodejs 'node20'
+    }
+
     environment{
         gitUrl = 'https://github.com/omipawar/flight-reservation-app.git'
         gitBranch = 'main'
@@ -17,6 +21,7 @@ pipeline{
             steps{
                 sh '''
                     cd frontend
+                    node -v
                     npm install -g npm
                     npm install
                     npm run build
