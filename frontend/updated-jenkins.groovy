@@ -28,5 +28,24 @@ pipeline{
                 '''
             }
         }
+
+        stage('sonarqube') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh '''
+                        cd frontend
+                        mvn sonar:sonar -Dsonar.projectKey=flight-reservation-frontend -Dsonar.sources=dist
+                    '''
+                }
+            }
+        }
+
+        stage('quality-gate') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 }
