@@ -15,12 +15,12 @@ pipeline{
 
         stage('code-build'){
             steps{
-                sh ```
+                sh '''
                     cd frontend
                     npm install -g npm
                     npm install
                     npm run build
-                ```
+                '''
             }
         }
     }
