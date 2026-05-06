@@ -12,5 +12,15 @@ pipeline{
                 git url: "${gitUrl}", branch: "${gitBranch}"
             }
         }
+
+        stage('code-build'){
+            steps{
+                sh ```
+                    cd frontend
+                    npm install
+                    npm run build
+                ```
+            }
+        }
     }
 }
