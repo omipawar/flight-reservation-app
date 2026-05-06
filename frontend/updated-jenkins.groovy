@@ -3,6 +3,7 @@ pipeline{
 
     tools {
         nodejs 'node'
+        maven 'maven3'
     }
 
     environment{
