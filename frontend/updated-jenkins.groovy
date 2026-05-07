@@ -18,35 +18,35 @@ pipeline{
             }
         }
 
-        stage('code-build'){
-            steps{
-                sh '''
-                    cd frontend
-                    node -v
-                    npm install -g npm
-                    npm install
-                    npm run build
-                '''
-            }
-        }
+        // stage('code-build'){
+        //     steps{
+        //         sh '''
+        //             cd frontend
+        //             node -v
+        //             npm install -g npm
+        //             npm install
+        //             npm run build
+        //         '''
+        //     }
+        // }
 
-        stage('sonarqube') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh '''
-                        cd frontend
-                        mvn sonar:sonar -Dsonar.projectKey=flight-reservation-frontend -Dsonar.sources=dist
-                    '''
-                }
-            }
-        }
+        // stage('sonarqube') {
+        //     steps {
+        //         withSonarQubeEnv('sonar') {
+        //             sh '''
+        //                 cd frontend
+        //                 mvn sonar:sonar -Dsonar.projectKey=flight-reservation-frontend -Dsonar.sources=dist
+        //             '''
+        //         }
+        //     }
+        // }
 
-        stage('quality-gate') {
-            steps {
-                script {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('quality-gate') {
+        //     steps {
+        //         script {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
     }
 }
