@@ -23,6 +23,7 @@ pipeline{
                     cd frontend
                     node -v
                     npm install -g npm
+                    npm -v
                     npm install
                     npm run build
                 '''
