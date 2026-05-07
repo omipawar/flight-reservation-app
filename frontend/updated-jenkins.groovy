@@ -17,17 +17,17 @@ pipeline{
             }
         }
 
-        // stage('code-build'){
-        //     steps{
-        //         sh '''
-        //             cd frontend
-        //             node -v
-        //             npm install -g npm
-        //             npm install
-        //             npm run build
-        //         '''
-        //     }
-        // }
+        stage('code-build'){
+            steps{
+                sh '''
+                    cd frontend
+                    node -v
+                    npm install -g npm
+                    npm install
+                    npm run build
+                '''
+            }
+        }
 
         // stage('sonarqube') {
         //     steps {
