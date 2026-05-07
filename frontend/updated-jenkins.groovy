@@ -57,6 +57,28 @@ pipeline{
                 }
             }
         }
-        
+
+        stage('deploy'){
+            steps{
+                sh '''
+                    cd frontend
+                    aws s3 sync dist/* s3://flight-reservation-frontend/
+                '''
+            }
+        }
+
+        post {
+            success {
+                echo 'Deployment completed successfully'
+            }
+    
+            failure {
+                echo 'Pipeline failed'
+            }
+    
+            always {
+                cleanWs()
+            }
+        }
     }
 }
