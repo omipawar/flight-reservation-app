@@ -66,19 +66,19 @@ pipeline{
                 '''
             }
         }
+    }
 
-        post {
-            success {
-                echo 'Deployment completed successfully'
-            }
-    
-            failure {
-                echo 'Pipeline failed'
-            }
-    
-            always {
-                cleanWs()
-            }
+    post {
+        success {
+            echo 'Deployment completed successfully'
+        }
+
+        failure {
+            echo 'Pipeline failed'
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
