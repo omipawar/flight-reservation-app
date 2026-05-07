@@ -30,23 +30,33 @@ pipeline{
             }
         }
 
-        // stage('sonarqube') {
-        //     steps {
-        //         withSonarQubeEnv('sonar') {
-        //             sh '''
-        //                 cd frontend
-        //                 mvn sonar:sonar -Dsonar.projectKey=flight-reservation-frontend -Dsonar.sources=dist
-        //             '''
-        //         }
-        //     }
-        // }
-
-        // stage('quality-gate') {
-        //     steps {
-        //         script {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            environment {
+                SCANNER_HOME = tool 'sonar'
+            }
+        
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh '''
+                        cd frontend
+        
+                        $SCANNER_HOME/bin/sonar-scanner \
+                          -Dsonar.projectKey=flight-reservation-frontend \
+                          -Dsonar.projectName=flight-reservation-frontend \
+                          -Dsonar.sources=src \
+                          -Dsonar.sourceEncoding=UTF-8
+                    '''
+                }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        
     }
 }
