@@ -48,11 +48,11 @@ pipeline {
         stage('Deploy') {
             steps {
                   echo 'This is deployment stage'
-        //        sh '''
-        //            cd FlightReservationApplication
-        //            kubectl apply -f k8s/deployment.yaml
-        //            kubectl apply -f k8s/service.yaml
-        //        '''
+                   sh '''
+                       cd FlightReservationApplication
+                       kubectl apply -f k8s/deployment.yaml
+                       kubectl apply -f k8s/service.yaml
+                   '''
            }
         }
     }
